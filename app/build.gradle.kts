@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    // Removed redundant "com.android.application"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -40,6 +42,12 @@ android {
 }
 
 dependencies {
+    // IMPORT PLATFORM: Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+
+    // ADD LIBRARY: You must add specific Firebase libraries here.
+    // When using the BoM, you don't specify versions in these lines.
+    // Add others here if needed, e.g.: implementation("com.google.firebase:firebase-auth")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -49,6 +57,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
